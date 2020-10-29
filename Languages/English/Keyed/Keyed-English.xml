@@ -2,6 +2,6 @@
 <LanguageData>
   <MRWTS>Misc Robots Work Tab Support</MRWTS>
 
-  <MRWTS.ColonistsOnlyShort>Colonists</MRWTS.ColonistsOnlyShort>
-  <MRWTS.AIRobotsOnlyShort>Robots</MRWTS.AIRobotsOnlyShort>
+  <MRWTS_ColonistsOnlyShort>Colonists</MRWTS_ColonistsOnlyShort>
+  <MRWTS_AIRobotsOnlyShort>Robots</MRWTS_AIRobotsOnlyShort>
 </LanguageData>

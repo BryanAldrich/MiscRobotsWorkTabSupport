@@ -113,19 +113,19 @@ namespace MiscRobotsWorkTabSupport
             }
             finally
             {
-#if DEBUG
-                if (!_debug.ContainsKey((__instance.def.defName, workTypeDef.defName)))
-                {
-                    Log.Message($"{__instance.def.defName} - {workTypeDef.defName} - CanWork:{__result}");
-                    _debug.Add((__instance.def.defName, workTypeDef.defName), __result);
-                }
-#endif
+//#if DEBUG
+//                if (!_debug.ContainsKey((__instance.def.defName, workTypeDef.defName)))
+//                {
+//                    Log.Message($"{__instance.def.defName} - {workTypeDef.defName} - CanWork:{__result}");
+//                    _debug.Add((__instance.def.defName, workTypeDef.defName), __result);
+//                }
+//#endif
             }
         }
 
-#if DEBUG
-        static Dictionary<(string, string), bool> _debug = new Dictionary<(string, string), bool>();
-#endif
+//#if DEBUG
+//        static Dictionary<(string, string), bool> _debug = new Dictionary<(string, string), bool>();
+//#endif
     }
 
     [HarmonyPatch(typeof(Pawn), "WorkTypeIsDisabled")]

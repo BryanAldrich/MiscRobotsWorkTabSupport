@@ -2,6 +2,6 @@
 <LanguageData>
   <MRWTS>Prise en charge de l'onglet Misc Robots Work</MRWTS>
 
-  <MRWTS.ColonistsOnlyShort>Colons</MRWTS.ColonistsOnlyShort>
-  <MRWTS.AIRobotsOnlyShort>Des robots</MRWTS.AIRobotsOnlyShort>
+  <MRWTS_ColonistsOnlyShort>Colons</MRWTS_ColonistsOnlyShort>
+  <MRWTS_AIRobotsOnlyShort>Des robots</MRWTS_AIRobotsOnlyShort>
 </LanguageData>

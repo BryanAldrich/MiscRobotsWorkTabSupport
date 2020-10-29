@@ -2,6 +2,6 @@
 <LanguageData>
   <MRWTS>Unterstützung für die Registerkarte "Verschiedene Roboter"</MRWTS>
 
-  <MRWTS.ColonistsOnlyShort>Kolonisten</MRWTS.ColonistsOnlyShort>
-  <MRWTS.AIRobotsOnlyShort>Roboter</MRWTS.AIRobotsOnlyShort>
+  <MRWTS_ColonistsOnlyShort>Kolonisten</MRWTS_ColonistsOnlyShort>
+  <MRWTS_AIRobotsOnlyShort>Roboter</MRWTS_AIRobotsOnlyShort>
 </LanguageData>

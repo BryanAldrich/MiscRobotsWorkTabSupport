@@ -2,6 +2,6 @@
 <LanguageData>
   <MRWTS>Soporte de pestaña de trabajo de Misc Robots</MRWTS>
 
-  <MRWTS.ColonistsOnlyShort>Colonos</MRWTS.ColonistsOnlyShort>
-  <MRWTS.AIRobotsOnlyShort>Robots</MRWTS.AIRobotsOnlyShort>
+  <MRWTS_ColonistsOnlyShort>Colonos</MRWTS_ColonistsOnlyShort>
+  <MRWTS_AIRobotsOnlyShort>Robots</MRWTS_AIRobotsOnlyShort>
 </LanguageData>
