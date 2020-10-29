@@ -91,12 +91,9 @@ namespace MiscRobotsWorkTabSupport
             {
                 List<string> tabList = new List<string>();
                 int curTab = ColonistsTabIndex + 1;
-                tabList.Add("ColonistsOnlyShort".Translate());
+                tabList.Add("MRWTS_ColonistsOnlyShort".Translate());
                 if (prisoners.Any())
                 {
-                    //prisonlabor has a translation string already
-                    tabList.Clear();
-                    tabList.Add("PrisonLabor_ColonistsOnlyShort".Translate());
                     tabList.Add("PrisonLabor_PrisonersOnlyShort".Translate());
                     PrisonersTabIndex = curTab++;
                 }
@@ -105,7 +102,7 @@ namespace MiscRobotsWorkTabSupport
 
                 if (robots.Any())
                 {
-                    tabList.Add("AIRobotsOnlyShort".Translate());
+                    tabList.Add("MRWTS_AIRobotsOnlyShort".Translate());
                     RobotsTabIndex = curTab++;
                 }
                 else
