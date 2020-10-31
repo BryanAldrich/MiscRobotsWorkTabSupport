@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/TraitDef[defName = "AIRobot_BaseTrait"]</xpath>
+		<value>
+			  <disabledWorkTags>Social, Artistic</disabledWorkTags>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName = "AIRobot_Cleaner" or defName = "AIRobot_Hauler"]/race</xpath>
+		<value>
+			<intelligence>ToolUser</intelligence>
+			<fleshType>Mechanoid</fleshType>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/ThingDef[defName = "AIRobot_Cleaner"]/robotSkills</xpath>
+	</Operation>
+</Patch>

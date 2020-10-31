@@ -50,28 +50,50 @@ namespace MiscRobotsWorkTabSupport
     [HarmonyPatch(typeof(X2_AIRobot), "CanDoWorkType")]
     public static class X2_AIRobot_CanDoWorkType
     {
+        static Dictionary<(string, string), bool> _cache = new Dictionary<(string, string), bool>();
         static bool Prefix(X2_AIRobot __instance, WorkTypeDef workTypeDef, ref bool __result)
         {
             var robotThing = __instance.def as X2_ThingDef_AIRobot;
 
+            bool cached = false;
             try
             {
+                if (_cache.TryGetValue((__instance.def.defName, workTypeDef.defName), out bool b))
+                {
+                    cached = true;
+                    __result = b;
+                    return false;
+                }
+
+                var thingDef = __instance.def as X2_ThingDef_AIRobot;
+
                 int num = workTypeDef?.relevantSkills?.Count ?? 0;
 
-                string[] globalDisabledWorkDefs = new string[] { "TM_Magic", "Patient", "PatientBedRest", "VBE_Writing", "Research", "FSFTraining" };
-                string[] haulerAllowedDefs = new string[] { "Hauling", "HaulingUrgent", "FSFRearming", "FSFRefueling", "FSFLoading", "FSFCremating", "FSFDeliver", "NuclearWork" };
-                string[] crafterAllowedDefs = new string[] { "RimefellerCrafting", "RB_BeekeepingWork", "FSFDeliver", "NuclearWork", "FSFStoneCut", "FSFSmelt", "FSFRefining" };
-                string[] builderAllowedDefs = new string[] { "FSFRearming", "FSFLoading", "FSFDeliver", "NuclearWork", "FSFStoneCut", "FSFSmelt", "FSFRefining" };
-                string[] omniAllowedDefs = new string[] { }.Union(haulerAllowedDefs).Union(crafterAllowedDefs).ToArray();
+                string[] globalDisabledWorkDefs = new string[] { "TM_Magic", "Patient", "PatientBedRest", "VBE_Writing", "FSFTraining", "Hunting" };
+                string[] haulerAllowedDefs = new string[] { "Hauling", "HaulingUrgent", "NuclearWork" };
+                string[] crafterAllowedDefs = new string[] { "RimefellerCrafting", "RB_BeekeepingWork", "NuclearWork" };
+                string[] builderAllowedDefs = new string[] { "NuclearWork" };
+                string[] omniOnlyAllowedDefs = new string[] { "Research", "WTH_Hack" };
+                string[] omniAllowedDefs = omniOnlyAllowedDefs.Union(haulerAllowedDefs).Union(crafterAllowedDefs).Union(builderAllowedDefs).ToArray();
 
-                if (globalDisabledWorkDefs.Contains(workTypeDef.defName))
+                if (workTypeDef == WorkTypeDefOf.Firefighter)
+                {
+                    __result = true;
+                    return false;
+                }
+                else if (thingDef.robotWorkTypes.Any(a => a.workTypeDef == workTypeDef))
+                {
+                    __result = true;
+                    return false;
+                }
+                else if (globalDisabledWorkDefs.Contains(workTypeDef.defName))
                 {
                     __result = false;
                     return false;
                 }
-                else if (workTypeDef == WorkTypeDefOf.Firefighter)
+                else if (__instance.def.defName != "RPP_Bot_Omni_V" && omniOnlyAllowedDefs.Contains(workTypeDef.defName))
                 {
-                    __result = true;
+                    __result = false;
                     return false;
                 }
                 else if (num == 0)
@@ -87,11 +109,11 @@ namespace MiscRobotsWorkTabSupport
 
                         __result = (workTypeDef.workTags & WorkTags.Hauling) != 0;
                     }
-                    else if (__instance.def == DefOfs.RPP_Bot_Omni_V)
+                    else if (__instance.def.defName == "RPP_Bot_Omni_V")
                     {
                         __result = omniAllowedDefs.Contains(workTypeDef.defName);
                     }
-                    else if (__instance.def.defName.StartsWith("RPP_Bot_Crafter_"))
+                    else if (__instance.def.defName.StartsWith("RPP_Bot_Crafter_") || __instance.def.defName.StartsWith("AIRobot_CraftingBot"))
                     {
                         __result = crafterAllowedDefs.Contains(workTypeDef.defName);
                     }
@@ -113,6 +135,8 @@ namespace MiscRobotsWorkTabSupport
             }
             finally
             {
+                if (!cached)
+                    _cache.Add((__instance.def.defName, workTypeDef.defName), __result);
 //#if DEBUG
 //                if (!_debug.ContainsKey((__instance.def.defName, workTypeDef.defName)))
 //                {

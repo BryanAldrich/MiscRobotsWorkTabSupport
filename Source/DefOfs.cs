@@ -14,7 +14,5 @@ namespace MiscRobotsWorkTabSupport
         public static TraitDef AIRobot_BaseTrait;
 
         public static WorkTypeDef Cleaning;
-
-        public static ThingDef RPP_Bot_Omni_V;
     }
 }

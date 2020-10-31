@@ -30,11 +30,15 @@
   <description>
     Misc Robots Worktab integration. Set priorities and work.
 
-    This, of course, requires Misc Robots [url=https://steamcommunity.com/sharedfiles/filedetails/?id=724602224]Steam[/url] and optionally Misc Robots++ [url=https://steamcommunity.com/sharedfiles/filedetails/?id=747645520]Steam[/url].
+    This, of course, requires Misc Robots [url=https://steamcommunity.com/sharedfiles/filedetails/?id=724602224]Steam[/url].
+    Includes patches for Misc Robots++ [url=https://steamcommunity.com/sharedfiles/filedetails/?id=747645520]Steam[/url].
+    Includes patches for Misc. Craftable Robots [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1409512356]here[/url] and its addon [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2148897780]here[/url].
 
-    Includes support for Fluffy's WorkTab [url=https://steamcommunity.com/sharedfiles/filedetails/?id=725219116]Steam[/url] [url=https://github.com/fluffy-mods/WorkTab/releases]Github[/url].
+    Includes support for Fluffy's WorkTab [url=https://steamcommunity.com/sharedfiles/filedetails/?id=725219116]Steam[/url] or [url=https://github.com/fluffy-mods/WorkTab/releases]Github[/url].
     Includes support for Aviuz's Prison Labor [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1899474310]Steam[/url] or [url=https://github.com/Aviuz/PrisonLabor/releases]Github[/url].
     Includes support for FrozenSnowFox's Complex Jobs [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2069684319]Steam[/url].
+
+    If your mod patches in robotWorkTypes because you added your own WorkTypeDef, then this mod will honor that addition and allow the bot to do it. FSF's Complex Jobs does this already.
   </description>
 
 </ModMetaData>
