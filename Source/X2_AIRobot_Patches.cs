@@ -58,10 +58,10 @@ namespace MiscRobotsWorkTabSupport
             bool cached = false;
             try
             {
-                if (_cache.TryGetValue((__instance.def.defName, workTypeDef.defName), out bool b))
+                if (_cache.TryGetValue((__instance.def.defName, workTypeDef.defName), out bool cachedValue))
                 {
                     cached = true;
-                    __result = b;
+                    __result = cachedValue;
                     return false;
                 }
 
@@ -111,7 +111,8 @@ namespace MiscRobotsWorkTabSupport
                     }
                     else if (__instance.def.defName == "RPP_Bot_Omni_V")
                     {
-                        __result = omniAllowedDefs.Contains(workTypeDef.defName);
+                        //__result = omniAllowedDefs.Contains(workTypeDef.defName);
+                        __result = DefDatabase<X2_ThingDef_AIRobot>.AllDefs.Any(a => a.robotWorkTypes.Any(b => b.workTypeDef == workTypeDef));
                     }
                     else if (__instance.def.defName.StartsWith("RPP_Bot_Crafter_") || __instance.def.defName.StartsWith("AIRobot_CraftingBot"))
                     {
