@@ -7,11 +7,21 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
-        <li Class="PatchOperationConditional">
+        <!--<li Class="PatchOperationConditional">
           <xpath>/Defs/ThingDef[@Name = "AIRobot_Bot_I" or @Name = "AIRobot_Bot_II" or @Name = "AIRobot_Bot_III"]/robotSkills</xpath>
           <match Class="PatchOperationRemove">
             <xpath>/Defs/ThingDef[@Name = "AIRobot_Bot_I" or @Name = "AIRobot_Bot_II" or @Name = "AIRobot_Bot_III"]/robotSkills</xpath>
           </match>
+        </li>-->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName = "AIRobot_GardenerBot"]/robotSkills</xpath>
+          <value>
+            <li>
+              <skillDef>Cooking</skillDef>
+              <level>20</level>
+              <passion>Minor</passion>
+            </li>
+          </value>
         </li>
         <li Class="PatchOperationAdd">
           <xpath>/Defs/ThingDef[defName = "AIRobot_ERBot"]</xpath>
@@ -101,6 +111,5 @@
         </li>
       </operations>
     </match>
-    <nomatch></nomatch>
   </Operation>
 </Patch>

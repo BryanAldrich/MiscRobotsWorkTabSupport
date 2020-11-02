@@ -48,6 +48,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WhatTheHack">
+      <HintPath>..\..\..\..\..\workshop\content\294100\1505914869\1.2\Assemblies\WhatTheHack.dll</HintPath>
+    </Reference>
     <Reference Include="WorkTab">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\725219116\1.2\Assemblies\WorkTab.dll</HintPath>
     </Reference>

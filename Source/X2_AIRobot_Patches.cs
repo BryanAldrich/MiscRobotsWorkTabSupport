@@ -67,7 +67,7 @@ namespace MiscRobotsWorkTabSupport
 
                 var thingDef = __instance.def as X2_ThingDef_AIRobot;
 
-                int num = workTypeDef?.relevantSkills?.Count ?? 0;
+                int numRequiredSkills = workTypeDef.relevantSkills?.Count ?? 0;
 
                 string[] globalDisabledWorkDefs = new string[] { "TM_Magic", "Patient", "PatientBedRest", "VBE_Writing", "FSFTraining", "Hunting" };
                 string[] haulerAllowedDefs = new string[] { "Hauling", "HaulingUrgent", "NuclearWork" };
@@ -91,12 +91,17 @@ namespace MiscRobotsWorkTabSupport
                     __result = false;
                     return false;
                 }
+                else if (workTypeDef.relevantSkills?.Count > 0 && thingDef.robotSkills?.Any(a => a.level == 0 && workTypeDef.relevantSkills.Any(b => b == a.skillDef)) == true)
+                {
+                    __result = false;
+                    return false;
+                }
                 else if (__instance.def.defName != "RPP_Bot_Omni_V" && omniOnlyAllowedDefs.Contains(workTypeDef.defName))
                 {
                     __result = false;
                     return false;
                 }
-                else if (num == 0)
+                else if (numRequiredSkills == 0)
                 {
                     //hauler or cleaner only here
                     if (workTypeDef == DefOfs.Cleaning)

@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using UnityEngine.UIElements;
+using WhatTheHack;
 
 namespace MiscRobotsWorkTabSupport
 {
@@ -44,12 +46,30 @@ namespace MiscRobotsWorkTabSupport
                 }
             }
         }
+        protected IEnumerable<Pawn> animals
+        {
+            get
+            {
+                return Find.CurrentMap.mapPawns.AllPawns.Where(p => p.training != null && p.Faction == Faction.OfPlayer && p.skills != null);
+            }
+        }
+
+        //protected IEnumerable<Pawn> mechanoids
+        //{
+        //    get
+        //    {
+        //        return Find.CurrentMap.mapPawns.PawnsInFaction(Faction.OfPlayer).Where(p => p.IsHacked());
+        //    }
+        //}
 
         public static Type InnerTabType { get; set; }
 
         public const int ColonistsTabIndex = 0;
         public int RobotsTabIndex = -1;
         public int PrisonersTabIndex = -1;
+        public int AnimalsTabIndex = -1;
+        public int MechanoidsTabIndex = -1;
+
         private int currentTabIndex = 0;
         private int lastTabIndex = 0;
 
@@ -108,6 +128,22 @@ namespace MiscRobotsWorkTabSupport
                 else
                     RobotsTabIndex = -1;
 
+                if (animals.Any())
+                {
+                    tabList.Add("Animals".Translate());
+                    AnimalsTabIndex = curTab++;
+                }
+                else
+                    AnimalsTabIndex = -1;
+
+                //if (mechanoids.Any())
+                //{
+                //    tabList.Add("Mechanoids".Translate());
+                //    MechanoidsTabIndex = curTab++;
+                //}
+                //else
+                //    MechanoidsTabIndex = -1;
+
                 tabs = tabList.ToArray();
 
                 if (currentTabIndex >= tabs.Length)
@@ -146,6 +182,10 @@ namespace MiscRobotsWorkTabSupport
                 tableField.SetValue(pawnTab, CreateTable(pawnTab, prisonersFunc));
             else if (currentTabIndex == RobotsTabIndex)
                 tableField.SetValue(pawnTab, CreateTable(pawnTab, () => robots));
+            else if (currentTabIndex == AnimalsTabIndex)
+                tableField.SetValue(pawnTab, CreateTable(pawnTab, () => animals));
+            //else if (currentTabIndex == MechanoidsTabIndex)
+            //    tableField.SetValue(pawnTab, CreateTable(pawnTab, () => mechanoids));
         }
 
         private PawnTable CreateTable(MainTabWindow_PawnTable pawnTable, Func<IEnumerable<Pawn>> pawnsFunc)
