@@ -83,7 +83,8 @@ namespace MiscRobotsWorkTabSupport
                     workTab = typeof(WorkTab.MainTabWindow_WorkTab);
                 }))();
             }
-            catch (Exception) { }
+            catch (TypeLoadException) { }
+            catch (Exception e) { Log.Error($"MiscRobotsWorkTabSupport: Error when trying to load Fluffy's WorkTab - {AllErrorMessages(e)}"); }
 
             pawnTab = Activator.CreateInstance(workTab) as MainTabWindow_PawnTable;
 
@@ -229,6 +230,20 @@ namespace MiscRobotsWorkTabSupport
             {
                 return 6f;
             }
+        }
+
+        static string AllErrorMessages(Exception e)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(e.Message);
+
+            while (e.InnerException != null)
+            {
+                e = e.InnerException;
+                sb.AppendLine(e.Message);
+            }
+
+            return sb.ToString();
         }
     }
 }

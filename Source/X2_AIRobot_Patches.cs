@@ -117,7 +117,8 @@ namespace MiscRobotsWorkTabSupport
                     else if (__instance.def.defName == "RPP_Bot_Omni_V")
                     {
                         //__result = omniAllowedDefs.Contains(workTypeDef.defName);
-                        __result = DefDatabase<X2_ThingDef_AIRobot>.AllDefs.Any(a => a.robotWorkTypes.Any(b => b.workTypeDef == workTypeDef));
+                        __result = DefDatabase<X2_ThingDef_AIRobot>.AllDefs.Any(a => a.robotWorkTypes.Any(b => b.workTypeDef == workTypeDef)) ||
+                            omniAllowedDefs.Contains(workTypeDef.defName);
                     }
                     else if (__instance.def.defName.StartsWith("RPP_Bot_Crafter_") || __instance.def.defName.StartsWith("AIRobot_CraftingBot"))
                     {
