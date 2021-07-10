@@ -22,16 +22,10 @@ namespace MiscRobotsWorkTabSupport
 				, context: PawnGenerationContext.PlayerStarter
 				, forceGenerateNewPawn: true
 				, newborn: true
-				, allowDead: false, allowDowned: false, canGeneratePawnRelations: false, mustBeCapableOfViolence: false
+				, canGeneratePawnRelations: false
 				, colonistRelationChanceFactor: 0f
-				, forceAddFreeWarmLayerIfNeeded: false
 				, allowGay: false
-				, allowFood: true
 				, allowAddictions: false
-				, inhabitant: false
-				, certainlyBeenInCryptosleep: false
-				, forceRedressWorldPawnIfFormerColonist: false
-				, worldPawnFactionDoesntMatter: false
 				, relationWithExtraPawnChanceFactor: 0f
 				, fixedBiologicalAge: 0f
 				, fixedChronologicalAge: 0f

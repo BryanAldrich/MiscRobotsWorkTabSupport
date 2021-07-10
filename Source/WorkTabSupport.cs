@@ -54,11 +54,11 @@ namespace MiscRobotsWorkTabSupport
             }
         }
 
-        //protected IEnumerable<Pawn> mechanoids
+        //protected IEnumerable<Pawn> mechanoidsVFE
         //{
         //    get
         //    {
-        //        return Find.CurrentMap.mapPawns.PawnsInFaction(Faction.OfPlayer).Where(p => p.IsHacked());
+        //        return Find.CurrentMap.mapPawns.PawnsInFaction(Faction.OfPlayer).Where(p => p.def.defName == "MAO_Mechanoids_Mender" || p.def.defName == "MAO_Mechanoids_Assembler");
         //    }
         //}
 
@@ -68,7 +68,7 @@ namespace MiscRobotsWorkTabSupport
         public int RobotsTabIndex = -1;
         public int PrisonersTabIndex = -1;
         public int AnimalsTabIndex = -1;
-        public int MechanoidsTabIndex = -1;
+        //public int MechanoidsTabIndex = -1;
 
         private int currentTabIndex = 0;
         private int lastTabIndex = 0;
@@ -106,8 +106,6 @@ namespace MiscRobotsWorkTabSupport
 
         public override void DoWindowContents(Rect rect)
         {
-            base.DoWindowContents(rect);
-
             string[] tabs;
             {
                 List<string> tabList = new List<string>();
@@ -137,9 +135,9 @@ namespace MiscRobotsWorkTabSupport
                 else
                     AnimalsTabIndex = -1;
 
-                //if (mechanoids.Any())
+                //if (mechanoidsVFE.Any())
                 //{
-                //    tabList.Add("Mechanoids".Translate());
+                //    tabList.Add("VFE Mechanoids".Translate());
                 //    MechanoidsTabIndex = curTab++;
                 //}
                 //else
@@ -186,7 +184,7 @@ namespace MiscRobotsWorkTabSupport
             else if (currentTabIndex == AnimalsTabIndex)
                 tableField.SetValue(pawnTab, CreateTable(pawnTab, () => animals));
             //else if (currentTabIndex == MechanoidsTabIndex)
-            //    tableField.SetValue(pawnTab, CreateTable(pawnTab, () => mechanoids));
+            //    tableField.SetValue(pawnTab, CreateTable(pawnTab, () => mechanoidsVFE ));
         }
 
         private PawnTable CreateTable(MainTabWindow_PawnTable pawnTable, Func<IEnumerable<Pawn>> pawnsFunc)
