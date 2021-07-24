@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Controller.cs" />
     <Compile Include="DefOfs.cs" />
+    <Compile Include="PawnColumnWorker_Guest_Patches.cs" />
     <Compile Include="PrisonLabor_WorkTab_Patches.cs" />
     <Compile Include="UIWidgets.cs" />
     <Compile Include="WorkTabSupport.cs" />
@@ -69,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.3.3055-beta</Version>
+      <Version>1.3.3066</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
       <Version>2.1.0</Version>
