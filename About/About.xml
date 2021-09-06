@@ -13,6 +13,7 @@
     <li>Haplo.Miscellaneous.Robots</li>
     <li>Alaestor.MiscRobots.PlusPlus</li>
     <li>avius.prisonlabor</li>
+    <li>krkr.locks2</li>
     <li>fluffy.worktab</li>
   </loadAfter>
   <modDependencies>
@@ -38,6 +39,8 @@
     Includes support for Fluffy's WorkTab [url=https://steamcommunity.com/sharedfiles/filedetails/?id=725219116]Steam[/url] or [url=https://github.com/fluffy-mods/WorkTab/releases]Github[/url].
     Includes support for Aviuz's Prison Labor [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1899474310]Steam[/url] or [url=https://github.com/Aviuz/PrisonLabor/releases]Github[/url].
     Includes support for FrozenSnowFox's Complex Jobs [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2069684319]Steam[/url].
+
+    Adds the Misc Robots family into the Locks2 selectors.
 
     If your mod patches in robotWorkTypes because you added your own WorkTypeDef, then this mod will honor that addition and allow the bot to do it. FSF's Complex Jobs does this already.
   </description>

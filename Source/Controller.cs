@@ -1,5 +1,6 @@
 ﻿using AIRobot;
 using HarmonyLib;
+using Locks2.Core;
 using PrisonLabor.CompatibilityPatches;
 using RimWorld;
 using RimWorld.Planet;
@@ -30,6 +31,15 @@ namespace MiscRobotsWorkTabSupport
                 }))();
             }
             catch { }
+
+            //try
+            //{
+            //    ((Action)(() =>
+            //    {
+            //        harmony.Patch(typeof(ITab_Lock).GetProperty("Pawns").GetGetMethod(), new HarmonyMethod(typeof(Lock2_Pawns_Patches), "Prefix"));
+            //    }))();
+            //}
+            //catch { }
         }
     }
 

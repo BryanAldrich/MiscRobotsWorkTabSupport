@@ -8,7 +8,7 @@
     <match Class="PatchOperationSequence">
       <operations>
         <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[@Name = "AIRobot_Bot_I"]/robotSkills</xpath>
+          <xpath>/Defs/ThingDef[@Name = "AIRobot_Bot"]/robotSkills</xpath>
         </li>
         <li Class="PatchOperationAdd">
           <xpath>/Defs/ThingDef[defName = "AIRobot_GardenerBot"]</xpath>
@@ -16,6 +16,11 @@
             <robotSkills>
               <li>
                 <skillDef>Plants</skillDef>
+                <level>20</level>
+                <passion>Minor</passion>
+              </li>
+              <li>
+                <skillDef>Cooking</skillDef>
                 <level>20</level>
                 <passion>Minor</passion>
               </li>

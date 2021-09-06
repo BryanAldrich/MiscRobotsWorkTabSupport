@@ -25,6 +25,12 @@
         <li Class="PatchOperationRemove">
           <xpath>/Defs/ThingDef[defName = "AIRobot_Cleaner"]/robotSkills</xpath>
         </li>
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>/Defs/ThinkTreeDef[defName = "X2_AIRobot"]/thinkRoot/subNodes/li[@Class="ThinkNode_PrioritySorter"]/subNodes/li[@Class="AIRobot.X2_JobGiver_Work"]</xpath>
+          <attribute>Class</attribute>
+          <value>RimWorld.JobGiver_Work</value>
+        </li>
       </operations>
     </match>
   </Operation>

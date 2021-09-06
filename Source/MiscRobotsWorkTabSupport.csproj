@@ -35,30 +35,34 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AIRobot">
-      <HintPath>E:\Games\SteamLibrary\steamapps\workshop\content\294100\724602224\1.2\Assemblies\AIRobot.dll</HintPath>
+    <Reference Include="AIRobot, Version=1.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\workshop\content\294100\724602224\1.3\Assemblies\AIRobot.dll</HintPath>
+    </Reference>
+    <Reference Include="Locks2">
+      <HintPath>..\..\..\..\..\workshop\content\294100\2285862824\1.3\Assemblies\Locks2.dll</HintPath>
     </Reference>
     <Reference Include="PrisonLabor">
       <HintPath>E:\Games\SteamLibrary\steamapps\workshop\content\294100\1899474310\1.2\Assemblies\PrisonLabor.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WhatTheHack">
-      <HintPath>E:\Games\SteamLibrary\steamapps\workshop\content\294100\1505914869\1.2\Assemblies\WhatTheHack.dll</HintPath>
+    <Reference Include="WhatTheHack, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\workshop\content\294100\1505914869\1.3\Assemblies\WhatTheHack.dll</HintPath>
     </Reference>
-    <Reference Include="WorkTab">
-      <HintPath>E:\Games\SteamLibrary\steamapps\workshop\content\294100\725219116\1.2\Assemblies\WorkTab.dll</HintPath>
+    <Reference Include="WorkTab, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\workshop\content\294100\725219116\1.3\Assemblies\WorkTab.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller.cs" />
     <Compile Include="DefOfs.cs" />
     <Compile Include="PawnColumnWorker_Guest_Patches.cs" />
+    <Compile Include="Lock2_Patches.cs" />
     <Compile Include="PrisonLabor_WorkTab_Patches.cs" />
     <Compile Include="UIWidgets.cs" />
     <Compile Include="WorkTabSupport.cs" />
@@ -70,10 +74,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.3.3066</Version>
+      <Version>1.3.3102</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.1.0</Version>
+      <Version>2.1.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

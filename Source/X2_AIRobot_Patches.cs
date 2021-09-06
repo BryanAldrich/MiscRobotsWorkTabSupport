@@ -74,7 +74,7 @@ namespace MiscRobotsWorkTabSupport
                 string[] crafterAllowedDefs = new string[] { "RimefellerCrafting", "RB_BeekeepingWork", "NuclearWork" };
                 string[] builderAllowedDefs = new string[] { "NuclearWork" };
                 string[] omniOnlyAllowedDefs = new string[] { "Research", "WTH_Hack" };
-                string[] omniAllowedDefs = omniOnlyAllowedDefs.Union(haulerAllowedDefs).Union(crafterAllowedDefs).Union(builderAllowedDefs).ToArray();
+                var omniAllowedDefs = omniOnlyAllowedDefs.Union(haulerAllowedDefs).Union(crafterAllowedDefs).Union(builderAllowedDefs);
 
                 if (workTypeDef == WorkTypeDefOf.Firefighter)
                 {
@@ -170,7 +170,6 @@ namespace MiscRobotsWorkTabSupport
                 if (__result)
                     return true;
 
-                //x.workSettings.EnableAndInitializeIfNotAlreadyInitialized();
                 return !x.CanDoWorkType(w);
             }
             return __result;
@@ -244,6 +243,14 @@ namespace MiscRobotsWorkTabSupport
                     __instance.timetable = new Pawn_TimetableTracker(__instance);
                 for (int i = 0; i < 24; i++)
                     __instance.timetable.SetAssignment(i, TimeAssignmentDefOf.Work);
+
+                if (__instance.workSettings == null || __instance.workSettings is X2_AIRobot_Pawn_WorkSettings)
+                {
+                    __instance.workSettings = new Pawn_WorkSettings(__instance);
+                    __instance.workSettings.EnableAndInitializeIfNotAlreadyInitialized();
+                }
+
+                __instance.mindState = new Verse.AI.Pawn_MindState(__instance);
             }
             return false;
         }

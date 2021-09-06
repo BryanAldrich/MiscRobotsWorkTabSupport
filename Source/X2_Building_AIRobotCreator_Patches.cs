@@ -51,7 +51,9 @@ namespace MiscRobotsWorkTabSupport
 
 			x2_AIRobot.story.traits.GainTrait(new Trait(DefOfs.AIRobot_BaseTrait, 1, true));
 
-			x2_AIRobot.workSettings.EnableAndInitialize();
+			if (x2_AIRobot.workSettings == null || x2_AIRobot.workSettings is X2_AIRobot_Pawn_WorkSettings)
+				x2_AIRobot.workSettings = new Pawn_WorkSettings(x2_AIRobot);
+			x2_AIRobot.workSettings.EnableAndInitializeIfNotAlreadyInitialized();
 
 			return false;
 		}

@@ -24,13 +24,10 @@ namespace MiscRobotsWorkTabSupport
         private MainTabWindow_PawnTable pawnTab;
 
         protected IEnumerable<Pawn> colonists => Find.CurrentMap.mapPawns.FreeColonists;
-        private Func<IEnumerable<Pawn>> prisonersFunc;
+        
         protected IEnumerable<Pawn> prisoners
         {
-            get
-            {
-                return prisonersFunc.Invoke();
-            }
+            get; private set;
         }
 
         protected IEnumerable<Pawn> robots
@@ -94,14 +91,13 @@ namespace MiscRobotsWorkTabSupport
                 {
                     prison.MainTabWindow_WorkTabMod_Tweak.InnerTabType = typeof(MainTabWindow_Work);
 
-                    var prisoners = Traverse.Create(Activator.CreateInstance(typeof(prison.MainTabWindow_WorkTabMod_Tweak))).Property<IEnumerable<Pawn>>("prisoners");
-                    prisonersFunc = () => prisoners.Value;
+                    prisoners = Traverse.Create(Activator.CreateInstance(typeof(prison.MainTabWindow_WorkTabMod_Tweak))).Property<IEnumerable<Pawn>>("prisoners").Value;
                 }))();
             }
             catch (Exception) { }
 
-            if (prisonersFunc == null)
-                prisonersFunc = () => { return new Pawn[0]; };
+            if (prisoners == null)
+                prisoners = Array.Empty<Pawn>();
         }
 
         public override void DoWindowContents(Rect rect)
@@ -157,6 +153,9 @@ namespace MiscRobotsWorkTabSupport
             {
                 CreatePawnTable();
                 lastTabIndex = currentTabIndex;
+
+                var setDirtyMethod = typeof(MainTabWindow_PawnTable).GetMethod("SetDirty", BindingFlags.Instance | BindingFlags.NonPublic);
+                setDirtyMethod.Invoke(pawnTab, new object[] { });
             }
             pawnTab.DoWindowContents(rect);
 
@@ -176,24 +175,24 @@ namespace MiscRobotsWorkTabSupport
             var tableField = typeof(MainTabWindow_PawnTable).GetField("table", BindingFlags.Instance | BindingFlags.NonPublic);
 
             if (currentTabIndex == ColonistsTabIndex)
-                tableField.SetValue(pawnTab, CreateTable(pawnTab, new Func<IEnumerable<Pawn>>(() => colonists)));
+                tableField.SetValue(pawnTab, CreateTable(pawnTab, colonists));
             else if (currentTabIndex == PrisonersTabIndex)
-                tableField.SetValue(pawnTab, CreateTable(pawnTab, prisonersFunc));
+                tableField.SetValue(pawnTab, CreateTable(pawnTab, prisoners));
             else if (currentTabIndex == RobotsTabIndex)
-                tableField.SetValue(pawnTab, CreateTable(pawnTab, () => robots));
+                tableField.SetValue(pawnTab, CreateTable(pawnTab, robots));
             else if (currentTabIndex == AnimalsTabIndex)
-                tableField.SetValue(pawnTab, CreateTable(pawnTab, () => animals));
+                tableField.SetValue(pawnTab, CreateTable(pawnTab, animals));
             //else if (currentTabIndex == MechanoidsTabIndex)
-            //    tableField.SetValue(pawnTab, CreateTable(pawnTab, () => mechanoidsVFE ));
+            //    tableField.SetValue(pawnTab, CreateTable(pawnTab, mechanoidsVFE ));
         }
 
-        private PawnTable CreateTable(MainTabWindow_PawnTable pawnTable, Func<IEnumerable<Pawn>> pawnsFunc)
+        private PawnTable CreateTable(MainTabWindow_PawnTable pawnTable, IEnumerable<Pawn> pawnsFunc)
         {
             var tableDef = pawnTable.GetType().GetProperty("PawnTableDef", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(pawnTable, null) as PawnTableDef;
             var bottomSpace = (float)pawnTable.GetType().GetProperty("ExtraBottomSpace", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(pawnTable, null);
             var topSpace = (float)pawnTable.GetType().GetProperty("ExtraTopSpace", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(pawnTable, null);
-
-            return new PawnTable(tableDef, pawnsFunc, UI.screenWidth - (int)(this.Margin * 2f), (int)((float)(UI.screenHeight - 35) - bottomSpace - topSpace - this.Margin * 2f));
+            
+            return new PawnTable(tableDef, () => pawnsFunc, UI.screenWidth - (int)(this.Margin * 2f), (int)(UI.screenHeight - 35 - bottomSpace - topSpace - this.Margin * 2f));
         }
 
         public override void Notify_ResolutionChanged()
@@ -202,14 +201,23 @@ namespace MiscRobotsWorkTabSupport
             base.Notify_ResolutionChanged();
         }
 
-        public override void PostOpen()
+        public override void PreOpen()
         {
+            base.PreOpen();
+
             if (IsTableNull())
             {
                 CreatePawnTable();
             }
+        }
+
+        public override void PostOpen()
+        {
+            base.PostOpen();
+
             var setDirtyMethod = typeof(MainTabWindow_PawnTable).GetMethod("SetDirty", BindingFlags.Instance | BindingFlags.NonPublic);
             setDirtyMethod.Invoke(pawnTab, new object[] { });
+
             Find.World.renderer.wantedMode = WorldRenderMode.None;
         }
 

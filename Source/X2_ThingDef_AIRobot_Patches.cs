@@ -24,7 +24,7 @@ namespace MiscRobotsWorkTabSupport
                 }
 
                 ___robotWorkTagsInt &= ~(WorkTags.AllWork | WorkTags.Commoner | WorkTags.ManualDumb | WorkTags.ManualSkilled);
-                Log.Message($"{__instance.defName}   result {___robotWorkTagsInt}");
+//                Log.Message($"{__instance.defName}   result {___robotWorkTagsInt}");
             }
 
             __result = ___robotWorkTagsInt;
