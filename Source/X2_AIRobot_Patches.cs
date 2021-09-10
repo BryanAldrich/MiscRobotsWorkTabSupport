@@ -249,10 +249,32 @@ namespace MiscRobotsWorkTabSupport
                     __instance.workSettings = new Pawn_WorkSettings(__instance);
                     __instance.workSettings.EnableAndInitializeIfNotAlreadyInitialized();
                 }
-
-                __instance.mindState = new Verse.AI.Pawn_MindState(__instance);
             }
             return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(JobGiver_Work), "PawnCanUseWorkGiver")]
+    static class JobGiver_Work_PawnCanUseWorkGiver
+    {
+        [HarmonyPrefix]
+        static bool Prefix(Pawn pawn, WorkGiver giver, ref bool __result)
+        {
+            if (pawn is X2_AIRobot)
+            {
+                if (pawn.WorkTagIsDisabled(giver.def.workTags))
+                    __result = false;
+                else if (giver.ShouldSkip(pawn))
+                    __result = false;
+                else if (giver.MissingRequiredCapacity(pawn) != null)
+                    __result = false;
+                else
+                    __result = true;
+                
+                return false;
+            }
+            
+            return true;
         }
     }
 }
