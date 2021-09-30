@@ -14,14 +14,9 @@
           </value>
         </li>
 
-        <!--<li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName = "AIRobot_Cleaner" or defName = "AIRobot_Hauler"]/race</xpath>
-          <value>
-            <intelligence>ToolUser</intelligence>
-            <fleshType>Mechanoid</fleshType>
-          </value>
-        </li>-->
-
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName = "AIRobot_Hauler"]/robotSkills</xpath>
+        </li>
         <li Class="PatchOperationRemove">
           <xpath>/Defs/ThingDef[defName = "AIRobot_Cleaner"]/robotSkills</xpath>
         </li>

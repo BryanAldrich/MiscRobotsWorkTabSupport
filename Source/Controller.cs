@@ -1,6 +1,5 @@
 ﻿using AIRobot;
 using HarmonyLib;
-using PrisonLabor.CompatibilityPatches;
 using RimWorld;
 using RimWorld.Planet;
 using System;
@@ -21,15 +20,6 @@ namespace MiscRobotsWorkTabSupport
         {
             var harmony = new Harmony("Elf.MiscRobotsWorkTabSupport");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-
-            try
-            {
-                ((Action)(() =>
-                {
-                    harmony.Patch(typeof(MainTabWindow_WorkTabMod_Tweak).GetConstructor(Type.EmptyTypes), new HarmonyMethod(typeof(PrisonLabor_WorkTab_Patches), "Prefix"));
-                }))();
-            }
-            catch { }
         }
     }
 
@@ -52,7 +42,7 @@ namespace MiscRobotsWorkTabSupport
 
         public override void LoadedGame()
         {
-            Log.Message($"Enabled workTypeDefs: {DefDatabase<WorkTypeDef>.AllDefs.Join(a => a.defName)}");
+            
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using AIRobot;
 using HarmonyLib;
-using prison = PrisonLabor.CompatibilityPatches;
 using RimWorld;
 using RimWorld.Planet;
 using System;
@@ -25,11 +24,6 @@ namespace MiscRobotsWorkTabSupport
 
         protected IEnumerable<Pawn> colonists => Find.CurrentMap.mapPawns.FreeColonists;
         
-        protected IEnumerable<Pawn> prisoners
-        {
-            get; private set;
-        }
-
         protected IEnumerable<Pawn> robots
         {
             get
@@ -63,7 +57,6 @@ namespace MiscRobotsWorkTabSupport
 
         public const int ColonistsTabIndex = 0;
         public int RobotsTabIndex = -1;
-        public int PrisonersTabIndex = -1;
         public int AnimalsTabIndex = -1;
         //public int MechanoidsTabIndex = -1;
 
@@ -84,20 +77,6 @@ namespace MiscRobotsWorkTabSupport
             catch (Exception e) { Log.Error($"MiscRobotsWorkTabSupport: Error when trying to load Fluffy's WorkTab - {AllErrorMessages(e)}"); }
 
             pawnTab = Activator.CreateInstance(workTab) as MainTabWindow_PawnTable;
-
-            try
-            {
-                ((Action)(() =>
-                {
-                    prison.MainTabWindow_WorkTabMod_Tweak.InnerTabType = typeof(MainTabWindow_Work);
-
-                    prisoners = Traverse.Create(Activator.CreateInstance(typeof(prison.MainTabWindow_WorkTabMod_Tweak))).Property<IEnumerable<Pawn>>("prisoners").Value;
-                }))();
-            }
-            catch (Exception) { }
-
-            if (prisoners == null)
-                prisoners = Array.Empty<Pawn>();
         }
 
         public override void DoWindowContents(Rect rect)
@@ -107,14 +86,7 @@ namespace MiscRobotsWorkTabSupport
                 List<string> tabList = new List<string>();
                 int curTab = ColonistsTabIndex + 1;
                 tabList.Add("MRWTS_ColonistsOnlyShort".Translate());
-                if (prisoners.Any())
-                {
-                    tabList.Add("PrisonLabor_PrisonersOnlyShort".Translate());
-                    PrisonersTabIndex = curTab++;
-                }
-                else
-                    PrisonersTabIndex = -1;
-
+                
                 if (robots.Any())
                 {
                     tabList.Add("MRWTS_AIRobotsOnlyShort".Translate());
@@ -176,8 +148,6 @@ namespace MiscRobotsWorkTabSupport
 
             if (currentTabIndex == ColonistsTabIndex)
                 tableField.SetValue(pawnTab, CreateTable(pawnTab, colonists));
-            else if (currentTabIndex == PrisonersTabIndex)
-                tableField.SetValue(pawnTab, CreateTable(pawnTab, prisoners));
             else if (currentTabIndex == RobotsTabIndex)
                 tableField.SetValue(pawnTab, CreateTable(pawnTab, robots));
             else if (currentTabIndex == AnimalsTabIndex)
