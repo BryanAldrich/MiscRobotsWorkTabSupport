@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Controller.cs" />
     <Compile Include="DefOfs.cs" />
+    <Compile Include="PawnColumnWorker_Guest_Patches.cs" />
     <Compile Include="UIWidgets.cs" />
     <Compile Include="WorkTabSupport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
