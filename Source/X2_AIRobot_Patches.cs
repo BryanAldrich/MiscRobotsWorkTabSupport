@@ -69,7 +69,7 @@ namespace MiscRobotsWorkTabSupport
 
                 int numRequiredSkills = workTypeDef.relevantSkills?.Count ?? 0;
 
-                string[] globalDisabledWorkDefs = new string[] { "TM_Magic", "Patient", "PatientBedRest", "VBE_Writing", "FSFTraining", "Hunting" };
+                string[] globalDisabledWorkDefs = new string[] { "TM_Magic", "Patient", "PatientBedRest", "VBE_Writing", "FSFTraining", "Handling", "Hunting", "PruneGauranlenTree" };
                 string[] haulerAllowedDefs = new string[] { "Hauling", "HaulingUrgent", "NuclearWork" };
                 string[] crafterAllowedDefs = new string[] { "RimefellerCrafting", "RB_BeekeepingWork", "NuclearWork" };
                 string[] builderAllowedDefs = new string[] { "NuclearWork" };

@@ -56,6 +56,9 @@
               <li>
                 <skillDef>Plants</skillDef>
               </li>
+              <li>
+                <skillDef>Animals</skillDef>
+              </li>
             </robotSkills>
           </value>
         </li>
