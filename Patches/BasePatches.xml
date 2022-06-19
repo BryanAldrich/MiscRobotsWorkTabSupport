@@ -14,8 +14,11 @@
           </value>
         </li>
 
-        <li Class="PatchOperationRemove">
+        <li Class="PatchOperationConditional">
           <xpath>/Defs/ThingDef[defName = "AIRobot_Hauler"]/robotSkills</xpath>
+          <match Class="PatchOperationRemove">
+            <xpath>/Defs/ThingDef[defName = "AIRobot_Hauler"]/robotSkills</xpath>
+          </match>
         </li>
         <li Class="PatchOperationRemove">
           <xpath>/Defs/ThingDef[defName = "AIRobot_Cleaner"]/robotSkills</xpath>

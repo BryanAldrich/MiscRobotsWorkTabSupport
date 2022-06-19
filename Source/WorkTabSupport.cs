@@ -22,7 +22,7 @@ namespace MiscRobotsWorkTabSupport
 
         private MainTabWindow_PawnTable pawnTab;
 
-        protected IEnumerable<Pawn> colonists => Find.CurrentMap.mapPawns.FreeColonists;
+        protected IEnumerable<Pawn> colonists => PlayerPawnsDisplayOrderUtility.InOrder(Find.CurrentMap.mapPawns.FreeColonists);
         
         protected IEnumerable<Pawn> robots
         {

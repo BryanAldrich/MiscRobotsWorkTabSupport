@@ -19,7 +19,7 @@ namespace MiscRobotsWorkTabSupport
 			PawnKindDef named = DefDatabase<PawnKindDef>.GetNamed(pawnDefName);
 			PawnGenerationRequest request = new PawnGenerationRequest(named
 				, faction: faction
-				, context: PawnGenerationContext.PlayerStarter
+				, context: PawnGenerationContext.NonPlayer
 				, forceGenerateNewPawn: true
 				, newborn: true
 				, canGeneratePawnRelations: false
