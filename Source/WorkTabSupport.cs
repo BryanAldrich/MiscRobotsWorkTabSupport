@@ -37,13 +37,13 @@ namespace MiscRobotsWorkTabSupport
                 }
             }
         }
-        protected IEnumerable<Pawn> animals
-        {
-            get
-            {
-                return Find.CurrentMap.mapPawns.AllPawns.Where(p => p.training != null && p.Faction == Faction.OfPlayer && p.skills != null);
-            }
-        }
+        //protected IEnumerable<Pawn> animals
+        //{
+        //    get
+        //    {
+        //        return Find.CurrentMap.mapPawns.AllPawns.Where(p => p.training != null && p.Faction == Faction.OfPlayer && p.skills != null);
+        //    }
+        //}
 
         //protected IEnumerable<Pawn> mechanoidsVFE
         //{
@@ -57,7 +57,7 @@ namespace MiscRobotsWorkTabSupport
 
         public const int ColonistsTabIndex = 0;
         public int RobotsTabIndex = -1;
-        public int AnimalsTabIndex = -1;
+        //public int AnimalsTabIndex = -1;
         //public int MechanoidsTabIndex = -1;
 
         private int currentTabIndex = 0;
@@ -95,13 +95,13 @@ namespace MiscRobotsWorkTabSupport
                 else
                     RobotsTabIndex = -1;
 
-                if (animals.Any())
-                {
-                    tabList.Add("Animals".Translate());
-                    AnimalsTabIndex = curTab++;
-                }
-                else
-                    AnimalsTabIndex = -1;
+                //if (animals.Any())
+                //{
+                //    tabList.Add("Animals".Translate());
+                //    AnimalsTabIndex = curTab++;
+                //}
+                //else
+                //    AnimalsTabIndex = -1;
 
                 //if (mechanoidsVFE.Any())
                 //{
@@ -150,8 +150,8 @@ namespace MiscRobotsWorkTabSupport
                 tableField.SetValue(pawnTab, CreateTable(pawnTab, colonists));
             else if (currentTabIndex == RobotsTabIndex)
                 tableField.SetValue(pawnTab, CreateTable(pawnTab, robots));
-            else if (currentTabIndex == AnimalsTabIndex)
-                tableField.SetValue(pawnTab, CreateTable(pawnTab, animals));
+            //else if (currentTabIndex == AnimalsTabIndex)
+            //    tableField.SetValue(pawnTab, CreateTable(pawnTab, animals));
             //else if (currentTabIndex == MechanoidsTabIndex)
             //    tableField.SetValue(pawnTab, CreateTable(pawnTab, mechanoidsVFE ));
         }
