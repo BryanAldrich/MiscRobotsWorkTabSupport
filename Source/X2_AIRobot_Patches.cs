@@ -227,7 +227,6 @@ namespace MiscRobotsWorkTabSupport
                     __instance.story.bodyType = BodyTypeDefOf.Male;
                 else
                     __instance.story.bodyType = BodyTypeDefOf.Female;
-                __instance.story.crownType = CrownType.Average;
 
                 __instance.Drawer.renderer.graphics.ResolveApparelGraphics();
 

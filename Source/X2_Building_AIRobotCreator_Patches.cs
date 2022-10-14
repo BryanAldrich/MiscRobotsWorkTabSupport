@@ -21,7 +21,6 @@ namespace MiscRobotsWorkTabSupport
 				, faction: faction
 				, context: PawnGenerationContext.NonPlayer
 				, forceGenerateNewPawn: true
-				, newborn: true
 				, canGeneratePawnRelations: false
 				, colonistRelationChanceFactor: 0f
 				, allowGay: false

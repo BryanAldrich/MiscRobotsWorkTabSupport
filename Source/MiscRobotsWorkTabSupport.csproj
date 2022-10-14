@@ -35,9 +35,9 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AIRobot, Version=1.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="AIRobot, Version=1.3.9.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\workshop\content\294100\724602224\1.3\Assemblies\AIRobot.dll</HintPath>
+      <HintPath>..\..\..\..\..\workshop\content\294100\724602224\1.4\Assemblies\AIRobot.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,7 +46,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\workshop\content\294100\1505914869\1.3\Assemblies\WhatTheHack.dll</HintPath>
     </Reference>
-    <Reference Include="WorkTab, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="WorkTab, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\workshop\content\294100\725219116\1.3\Assemblies\WorkTab.dll</HintPath>
     </Reference>
@@ -65,15 +65,15 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.3.3200</Version>
+      <Version>1.4.3517-beta</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.1.1</Version>
+      <Version>2.2.2</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" ..\..\..\1.3\Assemblies\</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" ..\..\..\1.4\Assemblies\</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
