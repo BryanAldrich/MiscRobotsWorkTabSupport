@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using UnityEngine.UIElements;
-using WhatTheHack;
 
 namespace MiscRobotsWorkTabSupport
 {

@@ -42,13 +42,9 @@
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
-    <Reference Include="WhatTheHack, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\workshop\content\294100\1505914869\1.3\Assemblies\WhatTheHack.dll</HintPath>
-    </Reference>
     <Reference Include="WorkTab, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\workshop\content\294100\725219116\1.3\Assemblies\WorkTab.dll</HintPath>
+      <HintPath>..\..\..\..\..\workshop\content\294100\725219116\1.4\Assemblies\WorkTab.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -65,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.4.3524</Version>
+      <Version>1.4.3534</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
       <Version>2.2.2</Version>
