@@ -28,7 +28,7 @@ namespace MiscRobotsWorkTabSupport
 				, relationWithExtraPawnChanceFactor: 0f
 				, fixedBiologicalAge: 0f
 				, fixedChronologicalAge: 0f
-				, fixedGender: Gender.Male
+				, fixedGender: Gender.None
 				);
 
 			X2_AIRobot x2_AIRobot = (X2_AIRobot)PawnGenerator.GeneratePawn(request);

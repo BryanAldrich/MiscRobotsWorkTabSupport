@@ -70,8 +70,8 @@ namespace MiscRobotsWorkTabSupport
                 int numRequiredSkills = workTypeDef.relevantSkills?.Count ?? 0;
 
                 string[] globalDisabledWorkDefs = new string[] { "TM_Magic", "Patient", "PatientBedRest", "VBE_Writing", "FSFTraining", "Handling", "Hunting", "PruneGauranlenTree" };
-                string[] haulerAllowedDefs = new string[] { "Hauling", "HaulingUrgent", "NuclearWork" };
-                string[] crafterAllowedDefs = new string[] { "RimefellerCrafting", "RB_BeekeepingWork", "NuclearWork" };
+                string[] haulerAllowedDefs = new string[] { "Hauling", "HaulingUrgent", "NuclearWork", "FSFHauling", "FSFRearming", "FSFLoading", "FSFDeliver" };
+                string[] crafterAllowedDefs = new string[] { "RimefellerCrafting", "RB_BeekeepingWork", "NuclearWork", "FSFSmelt", "FSFStoneCut", "FSFCremating" };
                 string[] builderAllowedDefs = new string[] { "NuclearWork" };
                 string[] omniOnlyAllowedDefs = new string[] { "Research", "WTH_Hack" };
                 var omniAllowedDefs = omniOnlyAllowedDefs.Union(haulerAllowedDefs).Union(crafterAllowedDefs).Union(builderAllowedDefs);
@@ -223,11 +223,8 @@ namespace MiscRobotsWorkTabSupport
                 if (!__instance.story.traits.HasTrait(DefOfs.AIRobot_BaseTrait))
                     __instance.story.traits.GainTrait(new Trait(DefOfs.AIRobot_BaseTrait, 1, true));
 
-                if (__instance.gender == Gender.Male)
-                    __instance.story.bodyType = BodyTypeDefOf.Male;
-                else
-                    __instance.story.bodyType = BodyTypeDefOf.Female;
-
+                __instance.story.bodyType = BodyTypeDefOf.Male;
+                
                 __instance.Drawer.renderer.graphics.ResolveApparelGraphics();
 
                 if (__instance.relations == null)

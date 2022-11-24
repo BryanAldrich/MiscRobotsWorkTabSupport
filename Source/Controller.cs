@@ -31,6 +31,8 @@ namespace MiscRobotsWorkTabSupport
             var workTab = DefDatabase<MainButtonDef>.GetNamed("Work");
             MainTabWindow_WorkTabMod_Tabs.InnerTabType = workTab.tabWindowClass;
             workTab.tabWindowClass = typeof(MainTabWindow_WorkTabMod_Tabs);
+
+            Log.Message($"Enabled WorkTypeDef's: {DefDatabase<WorkTypeDef>.AllDefs.Select(a => $"{a.defName} - {a.relevantSkills.Select(b => b.defName).Join(delimiter: "|")}").Join()}");
         }
     }
 
