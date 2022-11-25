@@ -96,7 +96,7 @@ namespace MiscRobotsWorkTabSupport
                     __result = false;
                     return false;
                 }
-                else if (__instance.def.defName != "RPP_Bot_Omni_V" && omniOnlyAllowedDefs.Contains(workTypeDef.defName))
+                else if (!__instance.def.defName.StartsWith("RPP_Bot_Omni_") && omniOnlyAllowedDefs.Contains(workTypeDef.defName))
                 {
                     __result = false;
                     return false;
@@ -114,7 +114,7 @@ namespace MiscRobotsWorkTabSupport
 
                         __result = (workTypeDef.workTags & WorkTags.Hauling) != 0;
                     }
-                    else if (__instance.def.defName == "RPP_Bot_Omni_V")
+                    else if (__instance.def.defName.StartsWith("RPP_Bot_Omni_"))
                     {
                         //__result = omniAllowedDefs.Contains(workTypeDef.defName);
                         __result = DefDatabase<X2_ThingDef_AIRobot>.AllDefs.Any(a => a.robotWorkTypes.Any(b => b.workTypeDef == workTypeDef)) ||

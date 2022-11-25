@@ -64,7 +64,7 @@
           </value>
         </li>
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName = "RPP_Bot_Omni_V"]</xpath>
+          <xpath>/Defs/ThingDef[defName = "RPP_Bot_Omni_I" or defName = "RPP_Bot_Omni_II" or defName = "RPP_Bot_Omni_III" or defName = "RPP_Bot_Omni_IV" or defName = "RPP_Bot_Omni_V"]</xpath>
           <value>
             <robotSkills>
               <li>
@@ -98,28 +98,28 @@
           </value>
         </li>
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName = "RPP_Bot_Builder_I" or defName = "RPP_Bot_Crafter_I" or defName = "RPP_Bot_ER_I" or defName = "RPP_Bot_Kitchen_I"]/robotSkills/li</xpath>
+          <xpath>/Defs/ThingDef[defName = "RPP_Bot_Builder_I" or defName = "RPP_Bot_Crafter_I" or defName = "RPP_Bot_ER_I" or defName = "RPP_Bot_Kitchen_I" or defName = "RPP_Bot_Omni_I"]/robotSkills/li</xpath>
           <value>
             <level>4</level>
             <passion>Minor</passion>
           </value>
         </li>
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName = "RPP_Bot_Builder_II" or defName = "RPP_Bot_Crafter_II" or defName = "RPP_Bot_ER_II" or defName = "RPP_Bot_Kitchen_II"]/robotSkills/li</xpath>
+          <xpath>/Defs/ThingDef[defName = "RPP_Bot_Builder_II" or defName = "RPP_Bot_Crafter_II" or defName = "RPP_Bot_ER_II" or defName = "RPP_Bot_Kitchen_II" or defName = "RPP_Bot_Omni_II"]/robotSkills/li</xpath>
           <value>
             <level>8</level>
             <passion>Minor</passion>
           </value>
         </li>
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName = "RPP_Bot_Builder_III" or defName = "RPP_Bot_Crafter_III" or defName = "RPP_Bot_ER_III" or defName = "RPP_Bot_Kitchen_III"]/robotSkills/li</xpath>
+          <xpath>/Defs/ThingDef[defName = "RPP_Bot_Builder_III" or defName = "RPP_Bot_Crafter_III" or defName = "RPP_Bot_ER_III" or defName = "RPP_Bot_Kitchen_III" or defName = "RPP_Bot_Omni_III"]/robotSkills/li</xpath>
           <value>
             <level>12</level>
             <passion>Minor</passion>
           </value>
         </li>
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName = "RPP_Bot_Builder_IV" or defName = "RPP_Bot_Crafter_IV" or defName = "RPP_Bot_ER_IV" or defName = "RPP_Bot_Kitchen_IV"]/robotSkills/li</xpath>
+          <xpath>/Defs/ThingDef[defName = "RPP_Bot_Builder_IV" or defName = "RPP_Bot_Crafter_IV" or defName = "RPP_Bot_ER_IV" or defName = "RPP_Bot_Kitchen_IV" or defName = "RPP_Bot_Omni_IV"]/robotSkills/li</xpath>
           <value>
             <level>16</level>
             <passion>Minor</passion>
