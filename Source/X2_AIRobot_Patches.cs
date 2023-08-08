@@ -73,6 +73,7 @@ namespace MiscRobotsWorkTabSupport
                 string[] haulerAllowedDefs = new string[] { "Hauling", "HaulingUrgent", "NuclearWork", "FSFHauling", "FSFRearming", "FSFLoading", "FSFDeliver" };
                 string[] crafterAllowedDefs = new string[] { "RimefellerCrafting", "RB_BeekeepingWork", "NuclearWork", "FSFSmelt", "FSFStoneCut", "FSFCremating" };
                 string[] builderAllowedDefs = new string[] { "NuclearWork" };
+                string[] kitchenAllowedDefs = new string[] { "BlightsCut" };
                 string[] omniOnlyAllowedDefs = new string[] { "Research", "WTH_Hack" };
                 var omniAllowedDefs = omniOnlyAllowedDefs.Union(haulerAllowedDefs).Union(crafterAllowedDefs).Union(builderAllowedDefs);
 
@@ -119,6 +120,10 @@ namespace MiscRobotsWorkTabSupport
                         //__result = omniAllowedDefs.Contains(workTypeDef.defName);
                         __result = DefDatabase<X2_ThingDef_AIRobot>.AllDefs.Any(a => a.robotWorkTypes.Any(b => b.workTypeDef == workTypeDef)) ||
                             omniAllowedDefs.Contains(workTypeDef.defName);
+                    }
+                    else if (__instance.def.defName.StartsWith("RRP_Bot_Kitchen_"))
+                    {
+                        __result = kitchenAllowedDefs.Contains(workTypeDef.defName);
                     }
                     else if (__instance.def.defName.StartsWith("RPP_Bot_Crafter_") || __instance.def.defName.StartsWith("AIRobot_CraftingBot"))
                     {

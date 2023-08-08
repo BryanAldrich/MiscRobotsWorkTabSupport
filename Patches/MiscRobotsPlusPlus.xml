@@ -4,6 +4,7 @@
     <mods>
       <li>Misc. Robots++</li>
       <li>Misc. Robots++ (Forked)</li>
+      <li>Misc. Robots++ (Adopted)</li>
       <!-- https://steamcommunity.com/workshop/filedetails/?id=747645520 -->
     </mods>
     <match Class="PatchOperationSequence">
