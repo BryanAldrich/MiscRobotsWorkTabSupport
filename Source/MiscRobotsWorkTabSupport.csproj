@@ -35,7 +35,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AIRobot, Version=1.3.9.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="AIRobot, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\workshop\content\294100\724602224\1.4\Assemblies\AIRobot.dll</HintPath>
     </Reference>
@@ -61,15 +61,15 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.4.3704</Version>
+      <Version>1.5.4063</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.2.2</Version>
+      <Version>2.3.3</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" ..\..\..\1.4\Assemblies\</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" ..\..\..\1.5\Assemblies\</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

@@ -54,7 +54,10 @@ namespace MiscRobotsWorkTabSupport
 				x2_AIRobot.workSettings = new Pawn_WorkSettings(x2_AIRobot);
 			x2_AIRobot.workSettings.EnableAndInitializeIfNotAlreadyInitialized();
 
-			return false;
+			x2_AIRobot.Drawer.renderer.EnsureGraphicsInitialized();
+
+
+            return false;
 		}
     }
 }

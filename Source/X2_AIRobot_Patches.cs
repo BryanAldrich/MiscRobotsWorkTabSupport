@@ -230,7 +230,7 @@ namespace MiscRobotsWorkTabSupport
 
                 __instance.story.bodyType = BodyTypeDefOf.Male;
                 
-                __instance.Drawer.renderer.graphics.ResolveApparelGraphics();
+                __instance.Drawer.renderer.SetAllGraphicsDirty();
 
                 if (__instance.relations == null)
                     __instance.relations = new Pawn_RelationsTracker(__instance);
