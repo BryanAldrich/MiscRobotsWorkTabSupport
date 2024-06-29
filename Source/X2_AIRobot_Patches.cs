@@ -55,6 +55,7 @@ namespace MiscRobotsWorkTabSupport
         {
             var robotThing = __instance.def as X2_ThingDef_AIRobot;
 
+            int resultMethod = 0;
             bool cached = false;
             try
             {
@@ -70,76 +71,87 @@ namespace MiscRobotsWorkTabSupport
                 int numRequiredSkills = workTypeDef.relevantSkills?.Count ?? 0;
 
                 string[] globalDisabledWorkDefs = new string[] { "TM_Magic", "Patient", "PatientBedRest", "VBE_Writing", "FSFTraining", "Handling", "Hunting", "PruneGauranlenTree" };
-                string[] haulerAllowedDefs = new string[] { "Hauling", "HaulingUrgent", "NuclearWork", "FSFHauling", "FSFRearming", "FSFLoading", "FSFDeliver" };
+                string[] haulerAllowedDefs = new string[] { "Hauling", "HaulingUrgent", "NuclearWork", "FSFHauling", "FSFRearming", "FSFTransport", "FSFLoading", "FSFDeliver" };
                 string[] crafterAllowedDefs = new string[] { "RimefellerCrafting", "RB_BeekeepingWork", "NuclearWork", "FSFSmelt", "FSFStoneCut", "FSFCremating" };
                 string[] builderAllowedDefs = new string[] { "NuclearWork" };
                 string[] kitchenAllowedDefs = new string[] { "BlightsCut" };
                 string[] omniOnlyAllowedDefs = new string[] { "Research", "WTH_Hack" };
                 var omniAllowedDefs = omniOnlyAllowedDefs.Union(haulerAllowedDefs).Union(crafterAllowedDefs).Union(builderAllowedDefs);
 
+#if DEBUG
+                Log.Message($"{workTypeDef.defName} - skills: {numRequiredSkills} tags: {workTypeDef.workTags}");
+#endif
+
                 if (workTypeDef == WorkTypeDefOf.Firefighter)
                 {
+                    resultMethod = 1;
                     __result = true;
-                    return false;
                 }
                 else if (thingDef.robotWorkTypes.Any(a => a.workTypeDef == workTypeDef))
                 {
+                    resultMethod = 2;
                     __result = true;
-                    return false;
                 }
                 else if (globalDisabledWorkDefs.Contains(workTypeDef.defName))
                 {
+                    resultMethod = 3;
                     __result = false;
-                    return false;
                 }
-                else if (workTypeDef.relevantSkills?.Count > 0 && thingDef.robotSkills?.Any(a => a.level == 0 && workTypeDef.relevantSkills.Any(b => b == a.skillDef)) == true)
+                else if (numRequiredSkills > 0 && thingDef.robotSkills?.Any(a => a.level == 0 && workTypeDef.relevantSkills.Any(b => b == a.skillDef)) == true)
                 {
+                    resultMethod = 4;
                     __result = false;
-                    return false;
                 }
                 else if (!__instance.def.defName.StartsWith("RPP_Bot_Omni_") && omniOnlyAllowedDefs.Contains(workTypeDef.defName))
                 {
+                    resultMethod = 5;
                     __result = false;
-                    return false;
                 }
                 else if (numRequiredSkills == 0)
                 {
                     //hauler or cleaner only here
                     if (workTypeDef == DefOfs.Cleaning)
                     {
+                        resultMethod = 6;
                         __result = robotThing.robotWorkTypes.Any(a => a.workTypeDef == DefOfs.Cleaning);
                     }
-                    else if (robotThing.robotWorkTypes.All(a => haulerAllowedDefs.Contains(a.workTypeDef.defName)))
+                    else if (__instance.def.defName.Contains("Hauler"))
                     {
-                        //haulers can do any chore that is, well, hauling
-
+                        resultMethod = 7;
                         __result = (workTypeDef.workTags & WorkTags.Hauling) != 0;
                     }
                     else if (__instance.def.defName.StartsWith("RPP_Bot_Omni_"))
                     {
-                        //__result = omniAllowedDefs.Contains(workTypeDef.defName);
-                        __result = DefDatabase<X2_ThingDef_AIRobot>.AllDefs.Any(a => a.robotWorkTypes.Any(b => b.workTypeDef == workTypeDef)) ||
-                            omniAllowedDefs.Contains(workTypeDef.defName);
+                        resultMethod = 8;
+                        __result = omniAllowedDefs.Contains(workTypeDef.defName) ||
+                            DefDatabase<X2_ThingDef_AIRobot>.AllDefs.Any(a => a.robotWorkTypes.Any(b => b.workTypeDef == workTypeDef));
                     }
                     else if (__instance.def.defName.StartsWith("RRP_Bot_Kitchen_"))
                     {
+                        resultMethod = 9;
                         __result = kitchenAllowedDefs.Contains(workTypeDef.defName);
                     }
                     else if (__instance.def.defName.StartsWith("RPP_Bot_Crafter_") || __instance.def.defName.StartsWith("AIRobot_CraftingBot"))
                     {
+                        resultMethod = 10;
                         __result = crafterAllowedDefs.Contains(workTypeDef.defName);
                     }
                     else if (__instance.def.defName.StartsWith("RPP_Bot_Builder_"))
                     {
+                        resultMethod = 11;
                         __result = builderAllowedDefs.Contains(workTypeDef.defName);
                     }
                     else
+                    {
+                        resultMethod = 12;
                         __result = false;
+                    }
 
                     return false;
                 }
                 else
                 {
+                    resultMethod = 13;
                     __result = (robotThing.robotSkills.Select(a => a.skillDef).Intersect(workTypeDef.relevantSkills).Count() > 0);
                 }
 
@@ -149,19 +161,19 @@ namespace MiscRobotsWorkTabSupport
             {
                 if (!cached)
                     _cache.Add((__instance.def.defName, workTypeDef.defName), __result);
-//#if DEBUG
-//                if (!_debug.ContainsKey((__instance.def.defName, workTypeDef.defName)))
-//                {
-//                    Log.Message($"{__instance.def.defName} - {workTypeDef.defName} - CanWork:{__result}");
-//                    _debug.Add((__instance.def.defName, workTypeDef.defName), __result);
-//                }
-//#endif
+#if DEBUG
+                if (!_debug.ContainsKey((__instance.def.defName, workTypeDef.defName)))
+                {
+                    Log.Message($"{__instance.def.defName} - {workTypeDef.defName} - CanWork:{__result} - ResultMethod:{resultMethod}");
+                    _debug.Add((__instance.def.defName, workTypeDef.defName), __result);
+                }
+#endif
             }
         }
 
-//#if DEBUG
-//        static Dictionary<(string, string), bool> _debug = new Dictionary<(string, string), bool>();
-//#endif
+#if DEBUG
+        static Dictionary<(string, string), bool> _debug = new Dictionary<(string, string), bool>();
+#endif
     }
 
     [HarmonyPatch(typeof(Pawn), "WorkTypeIsDisabled")]
