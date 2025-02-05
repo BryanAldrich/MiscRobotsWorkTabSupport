@@ -68,6 +68,18 @@
             </robotSkills>
           </value>
         </li>
+        <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "AIRobot_MedBot"]</xpath>
+            <value>
+                <robotSkills>
+                    <li>
+                        <skillDef>Medicine</skillDef>
+                        <level>20</level>
+                        <passion>Minor</passion>
+                    </li>
+                </robotSkills>
+            </value>
+        </li>
       </operations>
     </match>
   </Operation>
