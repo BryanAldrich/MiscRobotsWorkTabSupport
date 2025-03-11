@@ -1,115 +1,118 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-  <Operation Class="PatchOperationFindMod">
-    <mods>
-      <li>Misc. Craftable Robots Addon</li>
-      <!-- https://steamcommunity.com/sharedfiles/filedetails/?id=2148897780 -->
-    </mods>
-    <match Class="PatchOperationSequence">
-      <operations>
-        <!--<li Class="PatchOperationConditional">
-          <xpath>/Defs/ThingDef[@Name = "AIRobot_Bot_I" or @Name = "AIRobot_Bot_II" or @Name = "AIRobot_Bot_III"]/robotSkills</xpath>
-          <match Class="PatchOperationRemove">
-            <xpath>/Defs/ThingDef[@Name = "AIRobot_Bot_I" or @Name = "AIRobot_Bot_II" or @Name = "AIRobot_Bot_III"]/robotSkills</xpath>
-          </match>
-        </li>-->
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName = "AIRobot_GardenerBot"]/robotSkills</xpath>
-          <value>
-            <li>
-              <skillDef>Cooking</skillDef>
-              <level>20</level>
-              <passion>Minor</passion>
-            </li>
-          </value>
-        </li>
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName = "AIRobot_ERBot"]</xpath>
-          <value>
-            <robotSkills>
-              <li>
-                <skillDef>Medicine</skillDef>
-                <level>20</level>
-                <passion>Minor</passion>
-              </li>
-            </robotSkills>
-          </value>
-        </li>
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName = "AIRobot_AnalysisBot"]</xpath>
-          <value>
-            <robotSkills>
-              <li>
-                <skillDef>Intellectual</skillDef>
-                <level>20</level>
-                <passion>Minor</passion>
-              </li>
-            </robotSkills>
-          </value>
-        </li>
-        
-        <li Class="PatchOperationFindMod">
-          <mods>
-            <li>Rimatomics</li>
-          </mods>
-          <match Class="PatchOperationAdd">
-            <xpath>/Defs/ThingDef[defName = "AIRobot_AtomicBot"]</xpath>
-            <value>
-              <robotSkills>
-                <li>
-                  <skillDef>Intellectual</skillDef>
-                  <level>20</level>
-                  <passion>Minor</passion>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Misc. Craftable Robots Addon</li>
+            <li>Misc. Craftable Robots Addon (Continued)</li>
+            <!-- https://steamcommunity.com/sharedfiles/filedetails/?id=2148897780 -->
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationRemove">
+                    <xpath>/Defs/ThingDef[@ParentName = "AIRobot_Bot"]/robotSkills</xpath>
                 </li>
-                <li>
-                  <skillDef>Crafting</skillDef>
-                  <level>20</level>
-                  <passion>Minor</passion>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/ThingDef[defName = "AIRobot_GardenerBot"]/robotSkills</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/ThingDef[defName = "AIRobot_GardenerBot"]/robotSkills</xpath>
+                        <value>
+                            <li>
+                                <skillDef>Cooking</skillDef>
+                                <level>20</level>
+                                <passion>Minor</passion>
+                            </li>
+                        </value>
+                    </match>
                 </li>
-              </robotSkills>
-            </value>
-          </match>
-        </li>
-        <li Class="PatchOperationFindMod">
-          <mods>
-            <li>RimBees</li>
-          </mods>
-          <match Class="PatchOperationAdd">
-            <xpath>/Defs/ThingDef[defName = "AIRobot_BeekeeperBot"]</xpath>
-            <value>
-              <robotSkills>
-                <li>
-                  <skillDef>Crafting</skillDef>
-                  <level>20</level>
-                  <passion>Minor</passion>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName = "AIRobot_ERBot"]</xpath>
+                    <value>
+                        <robotSkills>
+                            <li>
+                                <skillDef>Medicine</skillDef>
+                                <level>20</level>
+                                <passion>Minor</passion>
+                            </li>
+                        </robotSkills>
+                    </value>
                 </li>
-                <li>
-                  <skillDef>Intellectual</skillDef>
-                  <level>20</level>
-                  <passion>Minor</passion>
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName = "AIRobot_AnalysisBot"]</xpath>
+                    <value>
+                        <robotSkills>
+                            <li>
+                                <skillDef>Intellectual</skillDef>
+                                <level>20</level>
+                                <passion>Minor</passion>
+                            </li>
+                        </robotSkills>
+                    </value>
                 </li>
-              </robotSkills>
-            </value>
-          </match>
-        </li>
-        <li Class="PatchOperationFindMod">
-          <mods>
-            <li>Vanilla Fishing Expanded</li>
-          </mods>
-          <match Class="PatchOperationAdd">
-            <xpath>/Defs/ThingDef[defName = "AIRobot_FisherBot"]</xpath>
-            <value>
-              <robotSkills>
-                <li>
-                  <skillDef>Animals</skillDef>
-                  <level>20</level>
-                  <passion>Minor</passion>
+
+                <li Class="PatchOperationFindMod">
+                    <mods>
+                        <li>Rimatomics</li>
+                    </mods>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/ThingDef[defName = "AIRobot_AtomicBot"]</xpath>
+                        <value>
+                            <robotSkills>
+                                <li>
+                                    <skillDef>Intellectual</skillDef>
+                                    <level>20</level>
+                                    <passion>Minor</passion>
+                                </li>
+                                <li>
+                                    <skillDef>Crafting</skillDef>
+                                    <level>20</level>
+                                    <passion>Minor</passion>
+                                </li>
+                            </robotSkills>
+                        </value>
+                    </match>
                 </li>
-              </robotSkills>
-            </value>
-          </match>
-        </li>
-      </operations>
-    </match>
-  </Operation>
+                <li Class="PatchOperationFindMod">
+                    <mods>
+                        <li>RimBees</li>
+                    </mods>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/ThingDef[defName = "AIRobot_BeekeeperBot"]</xpath>
+                        <value>
+                            <robotSkills>
+                                <li>
+                                    <skillDef>Crafting</skillDef>
+                                    <level>20</level>
+                                    <passion>Minor</passion>
+                                </li>
+                                <li>
+                                    <skillDef>Intellectual</skillDef>
+                                    <level>20</level>
+                                    <passion>Minor</passion>
+                                </li>
+                            </robotSkills>
+                        </value>
+                    </match>
+                </li>
+                <li Class="PatchOperationFindMod">
+                    <mods>
+                        <li>Vanilla Fishing Expanded</li>
+                    </mods>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/ThingDef[defName = "AIRobot_FisherBot"]</xpath>
+                        <value>
+                            <robotSkills>
+                                <li>
+                                    <skillDef>Animals</skillDef>
+                                    <level>20</level>
+                                    <passion>Minor</passion>
+                                </li>
+                            </robotSkills>
+                        </value>
+                    </match>
+                </li>
+            </operations>
+        </match>
+    </Operation>
 </Patch>

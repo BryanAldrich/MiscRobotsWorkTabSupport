@@ -50,7 +50,7 @@ namespace MiscRobotsWorkTabSupport
     [HarmonyPatch(typeof(X2_AIRobot), "CanDoWorkType")]
     public static class X2_AIRobot_CanDoWorkType
     {
-        static Dictionary<(string, string), bool> _cache = new Dictionary<(string, string), bool>();
+        static readonly Dictionary<(string, string), bool> _cache = new Dictionary<(string, string), bool>();
         static bool Prefix(X2_AIRobot __instance, WorkTypeDef workTypeDef, ref bool __result)
         {
             var robotThing = __instance.def as X2_ThingDef_AIRobot;
@@ -152,7 +152,7 @@ namespace MiscRobotsWorkTabSupport
                 else
                 {
                     resultMethod = 13;
-                    __result = (robotThing.robotSkills.Select(a => a.skillDef).Intersect(workTypeDef.relevantSkills).Count() > 0);
+                    __result = (robotThing.robotSkills.Select(a => a.skillDef).Intersect(workTypeDef.relevantSkills).Any());
                 }
 
                 return false;
@@ -241,7 +241,7 @@ namespace MiscRobotsWorkTabSupport
                     __instance.story.traits.GainTrait(new Trait(DefOfs.AIRobot_BaseTrait, 1, true));
 
                 __instance.story.bodyType = BodyTypeDefOf.Male;
-                
+
                 __instance.Drawer.renderer.SetAllGraphicsDirty();
 
                 if (__instance.relations == null)
@@ -283,10 +283,10 @@ namespace MiscRobotsWorkTabSupport
                     __result = false;
                 else
                     __result = true;
-                
+
                 return false;
             }
-            
+
             return true;
         }
     }

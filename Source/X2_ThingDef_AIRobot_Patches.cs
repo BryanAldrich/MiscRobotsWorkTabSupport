@@ -9,7 +9,6 @@ using Verse;
 
 namespace MiscRobotsWorkTabSupport
 {
-
     [HarmonyPatch(typeof(X2_ThingDef_AIRobot), "robotWorkTags", MethodType.Getter)]
     static class X2_ThingDef_AIRobot_robotWorkTags
     {
