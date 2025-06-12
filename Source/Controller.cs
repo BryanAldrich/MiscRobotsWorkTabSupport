@@ -44,7 +44,6 @@ namespace MiscRobotsWorkTabSupport
 
         public override void LoadedGame()
         {
-            
         }
     }
 }

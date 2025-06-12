@@ -50,12 +50,14 @@ namespace MiscRobotsWorkTabSupport
     [HarmonyPatch(typeof(X2_AIRobot), "CanDoWorkType")]
     public static class X2_AIRobot_CanDoWorkType
     {
-        static readonly Dictionary<(string, string), bool> _cache = new Dictionary<(string, string), bool>();
+        static readonly Dictionary<(string, string), bool> _cache = [];
         static bool Prefix(X2_AIRobot __instance, WorkTypeDef workTypeDef, ref bool __result)
         {
             var robotThing = __instance.def as X2_ThingDef_AIRobot;
 
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
             int resultMethod = 0;
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
             bool cached = false;
             try
             {
@@ -70,12 +72,12 @@ namespace MiscRobotsWorkTabSupport
 
                 int numRequiredSkills = workTypeDef.relevantSkills?.Count ?? 0;
 
-                string[] globalDisabledWorkDefs = new string[] { "TM_Magic", "Patient", "PatientBedRest", "VBE_Writing", "FSFTraining", "Handling", "Hunting", "PruneGauranlenTree" };
-                string[] haulerAllowedDefs = new string[] { "Hauling", "HaulingUrgent", "NuclearWork", "FSFHauling", "FSFRearming", "FSFTransport", "FSFLoading", "FSFDeliver" };
-                string[] crafterAllowedDefs = new string[] { "RimefellerCrafting", "RB_BeekeepingWork", "NuclearWork", "FSFSmelt", "FSFStoneCut", "FSFCremating" };
-                string[] builderAllowedDefs = new string[] { "NuclearWork" };
-                string[] kitchenAllowedDefs = new string[] { "BlightsCut" };
-                string[] omniOnlyAllowedDefs = new string[] { "Research", "WTH_Hack" };
+                string[] globalDisabledWorkDefs = ["TM_Magic", "Patient", "PatientBedRest", "VBE_Writing", "FSFTraining", "Handling", "Hunting", "PruneGauranlenTree"];
+                string[] haulerAllowedDefs = ["Hauling", "HaulingUrgent", "NuclearWork", "FSFHauling", "FSFRearming", "FSFTransport", "FSFLoading", "FSFDeliver"];
+                string[] crafterAllowedDefs = ["RimefellerCrafting", "RB_BeekeepingWork", "NuclearWork", "FSFSmelt", "FSFStoneCut", "FSFCremating"];
+                string[] builderAllowedDefs = ["NuclearWork"];
+                string[] kitchenAllowedDefs = ["BlightsCut"];
+                string[] omniOnlyAllowedDefs = ["Research", "WTH_Hack"];
                 var omniAllowedDefs = omniOnlyAllowedDefs.Union(haulerAllowedDefs).Union(crafterAllowedDefs).Union(builderAllowedDefs);
 
 #if DEBUG
@@ -172,7 +174,7 @@ namespace MiscRobotsWorkTabSupport
         }
 
 #if DEBUG
-        static Dictionary<(string, string), bool> _debug = new Dictionary<(string, string), bool>();
+        readonly static Dictionary<(string, string), bool> _debug = [];
 #endif
     }
 
@@ -201,7 +203,7 @@ namespace MiscRobotsWorkTabSupport
         {
             if (__instance is X2_AIRobot x)
             {
-                __result = __result.Union(DefDatabase<WorkTypeDef>.AllDefs.Where(a => !x.CanDoWorkType(a))).ToList();
+                __result = [.. __result.Union(DefDatabase<WorkTypeDef>.AllDefs.Where(a => !x.CanDoWorkType(a)))];
                 //Log.Message($"GetDisabledWorkTypes - {x.def.defName} -- {__result.Join(a => a.defName)}");
             }
             return __result;
@@ -225,35 +227,28 @@ namespace MiscRobotsWorkTabSupport
         {
             if (Scribe.mode == LoadSaveMode.Inactive)
             {
-                if (__instance.equipment == null)
-                    __instance.equipment = new Pawn_EquipmentTracker(__instance);
+                __instance.equipment ??= new Pawn_EquipmentTracker(__instance);
 
-                if (__instance.apparel == null)
-                    __instance.apparel = new Pawn_ApparelTracker(__instance);
+                __instance.apparel ??= new Pawn_ApparelTracker(__instance);
 
-                if (__instance.skills == null)
-                    __instance.skills = new Pawn_SkillTracker(__instance);
-                typeof(X2_AIRobot).GetMethod("SetSkills", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(__instance, new object[] { false });
+                __instance.skills ??= new Pawn_SkillTracker(__instance);
+                typeof(X2_AIRobot).GetMethod("SetSkills", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(__instance, [false]);
 
-                if (__instance.story == null)
-                    __instance.story = new Pawn_StoryTracker(__instance);
-                if (!__instance.story.traits.HasTrait(DefOfs.AIRobot_BaseTrait))
-                    __instance.story.traits.GainTrait(new Trait(DefOfs.AIRobot_BaseTrait, 1, true));
+                __instance.story ??= new Pawn_StoryTracker(__instance);
+                __instance.story.traits.GainTrait(new Trait(DefOfs.AIRobot_BaseTrait, 1, true));
 
                 __instance.story.bodyType = BodyTypeDefOf.Male;
 
                 __instance.Drawer.renderer.SetAllGraphicsDirty();
 
-                if (__instance.relations == null)
-                    __instance.relations = new Pawn_RelationsTracker(__instance);
+                __instance.relations ??= new Pawn_RelationsTracker(__instance);
                 __instance.relations.ClearAllRelations();
 
                 if (!__instance.ignoreSpawnRename)
-                    typeof(X2_AIRobot).GetMethod("SetBasename", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { __instance });
+                    typeof(X2_AIRobot).GetMethod("SetBasename", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, [__instance]);
                 __instance.ignoreSpawnRename = false;
 
-                if (__instance.timetable == null)
-                    __instance.timetable = new Pawn_TimetableTracker(__instance);
+                __instance.timetable ??= new Pawn_TimetableTracker(__instance);
                 for (int i = 0; i < 24; i++)
                     __instance.timetable.SetAssignment(i, TimeAssignmentDefOf.Work);
 
@@ -262,6 +257,10 @@ namespace MiscRobotsWorkTabSupport
                     __instance.workSettings = new Pawn_WorkSettings(__instance);
                     __instance.workSettings.EnableAndInitializeIfNotAlreadyInitialized();
                 }
+
+#if DEBUG
+                Log.Message(__instance.workSettings.DebugString());
+#endif
             }
             return false;
         }
@@ -273,21 +272,52 @@ namespace MiscRobotsWorkTabSupport
         [HarmonyPrefix]
         static bool Prefix(Pawn pawn, WorkGiver giver, ref bool __result)
         {
-            if (pawn is X2_AIRobot)
+            try
             {
-                if (pawn.WorkTagIsDisabled(giver.def.workTags))
-                    __result = false;
-                else if (giver.ShouldSkip(pawn))
-                    __result = false;
-                else if (giver.MissingRequiredCapacity(pawn) != null)
-                    __result = false;
-                else
-                    __result = true;
-
-                return false;
+                if (pawn is X2_AIRobot p)
+                {
+                    if (pawn.WorkTagIsDisabled(giver.def.workTags))
+                        __result = false;
+                    else if (giver.ShouldSkip(pawn))
+                        __result = false;
+                    else if (giver.MissingRequiredCapacity(pawn) != null)
+                        __result = false;
+                    else
+                        __result = true;
+                    return false;
+                }
+            }
+            finally
+            {
+#if DEBUG
+                Log.Message($"Checking {pawn.def.defName} - {giver.def.defName} -- __result {__result}.");
+#endif
             }
 
             return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(GenGrid), "Walkable")]
+    static class GenGrid_Walkable
+    {
+        [HarmonyPrefix]
+        static bool Prefix(IntVec3 c, Map map, ref bool __result)
+        {
+            if (map == null)
+                Log.WarningOnce($"map is null when Walkable for {c}", c.GetHashCode());
+            else if (map?.pathing == null)
+                Log.WarningOnce($"map.pathing is null when Walkable for {c}", c.GetHashCode());
+            else if (map?.pathing?.Normal == null)
+                Log.WarningOnce($"map.pathing.Normal is null when Walkable for {c}", c.GetHashCode());
+            else if (map?.pathing?.Normal?.pathGrid == null)
+                Log.WarningOnce($"map.pathing.Normal.pathGrid is null when Walkable for {c}", c.GetHashCode());
+            else if (map?.pathing?.FenceBlocked?.pathGrid == null)
+                Log.WarningOnce($"map.pathing.FenceBlocked.pathGrid is null when Walkable for {c}", c.GetHashCode());
+            else
+                return true;
+
+            return false;
         }
     }
 }

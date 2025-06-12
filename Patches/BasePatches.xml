@@ -29,7 +29,7 @@
           <attribute>Class</attribute>
           <value>RimWorld.JobGiver_Work</value>
         </li>
-        
+
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[@Name = "Base_X2_AIRobot"]/race/intelligence</xpath>
           <value>
