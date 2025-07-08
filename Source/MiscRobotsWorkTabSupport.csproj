@@ -14,9 +14,9 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AIRobot, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="AIRobot, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\workshop\content\294100\724602224\1.4\Assemblies\AIRobot.dll</HintPath>
+      <HintPath>..\..\..\..\..\workshop\content\294100\724602224\1.6\Assemblies\AIRobot.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
